@@ -1,0 +1,113 @@
+﻿@using SözlükSitesi.WebUI.Extensions
+<html>
+
+<head>
+    <title>X Sözlük</title>
+
+    <meta name="description" content="X Sözlük">
+    <meta name="keywords" content="Bilgi, Öğrenme">
+    <meta name="author" content="Oğuzhan Erdoğan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        label.required:after {
+            content: "*\00a0";
+            color: red;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    X Sözlük
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-secondary">Anasayfa</a></li>
+
+                </ul>
+
+
+
+                <div class="text-end">
+
+                    @if (!User.IsLogged())
+                    {
+
+                        <a type="button" id="Giris" asp-controller="Auth" asp-action="Login" class=" btn btn-outline-light me-2">Giriş Yap</a>
+                        <a type="button" id="Kayit" asp-controller="Auth" asp-action="Register" class=" btn btn-warning">Kayıt Ol</a>
+
+                    }
+                    else
+                    {
+                        var firstName = User.GetUserFirstName();
+                        var lastName = User.GetUserLastName();
+
+                        <div class="mt-2">Hoş Geldin @firstName @lastName </div>
+                        <a type="button" id="Cikis" asp-controller="Auth" asp-action="Logout" class=" btn btn-warning">Çıkış Yap</a>
+
+                    }
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </header>
+
+    <div class="container">
+
+        @RenderBody()
+
+    </div>
+
+    <footer class="bg-dark text-white text-center mt-auto py-5 fw-bold">
+        X SÖZLÜK
+        <p class="text-secondary"> © Tüm Hakları Saklıdır. </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+        @if (!string.IsNullOrWhiteSpace(TempData["ErrorMessage"]?.ToString()))
+        {
+            @:toastr.error("@TempData["ErrorMessage"]?.ToString()");
+        }
+
+        @if (!string.IsNullOrWhiteSpace(TempData["LoginMessage"]?.ToString()))
+        {
+            @:toastr.info("@TempData["LoginMessage"]?.ToString()");
+        }
+        @if (User.IsLogged())
+        {
+            @:$('#Giris').addClass('d-none');
+            @:$('#Kayit').addClass('d-none');
+
+        }
+
+
+
+    </script>
+
+
+</body>
+
+
+
+</html>
