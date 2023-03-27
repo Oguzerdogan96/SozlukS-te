@@ -1,0 +1,33 @@
+﻿@*@model List<HomeListViewModel>*@
+<div class="row">
+    <div class="col-md-3">
+
+        <vc:titles ></vc:titles>
+    </div>
+    <div class="col-md-9">
+
+
+
+        <vc:entries title-id="@ViewBag.id"></vc:entries>
+        @*@for (int i = 0; i < 1; i++)
+        { 
+            var x = 0;
+            @foreach (var item in Model)
+            {
+                if (x == 0)
+                {
+                    @item.Title
+                }
+
+                <div class="card">
+                    <div class="card-body">
+                        @item.Entry
+                    </div>
+                </div>
+                x++;
+            }
+        }*@
+
+
+    </div>
+</div>

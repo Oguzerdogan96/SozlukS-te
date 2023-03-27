@@ -1,0 +1,33 @@
+﻿@model TitleViewModel
+
+
+
+
+<div class="row">
+
+    <div class="col-md-6 offset-3 mt-5">
+
+        <div class="card">
+            <div class="card-body">
+
+                <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="EditTitle">
+
+                   
+                    <input asp-for="Id" type="hidden" />
+
+                    <div class="mt-2">
+                        <label asp-for="Title">Başlık</label>
+                        <input asp-for="Title" type="text" class="form-control" />
+                    </div>
+
+                    
+                    <button class="btn btn-success mt-4" style="float:right" type="submit">Başlık Güncelle</button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

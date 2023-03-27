@@ -1,0 +1,39 @@
+﻿@model LoginViewModel
+
+<div class="row">
+    <div class="col-md-6 offset-3" style="padding-top:50px">
+
+        <div class="card">
+            <div class="card-header fw-bold fs-5">
+                Giriş Yapın
+            </div>
+
+            <div class="card-body">
+
+
+                <form method="post" asp-controller="Auth" asp-action="Login" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+
+
+                    <div class="mt-2">
+                        <label class="required" asp-for="Email"></label>
+                        <input asp-for="Email" type="text" class="form-control" />
+
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="required" asp-for="Password"></label>
+                        <input asp-for="Password" type="Password" class="form-control" />
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-warning ms-2">Giriş</button>
+
+                    <a id="btnIptal" asp-controller="Home" asp-action="Index" class="btn btn-outline-warning ms-2">İptal</a>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

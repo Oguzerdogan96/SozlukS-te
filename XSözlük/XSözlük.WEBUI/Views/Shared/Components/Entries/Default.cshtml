@@ -1,0 +1,26 @@
+﻿@model List<HomeListViewModel>
+
+
+
+@for (int i = 0; i < 1; i++)
+{
+    var x = 0;
+    @foreach (var item in Model)
+    {
+
+        if (x == 0)
+        {
+            <div class="fw-bold" style="color:darkorange; ">
+                <h2 style="font-size:400%">@item.Title</h2>
+            </div>
+        }
+
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p class="fw-bold" style="font-size:200%">@item.Entry</p>
+                <footer class="blockquote-footer">@item.CreatedDate </footer>
+            </blockquote>
+        </div>
+        x++;
+    }
+}

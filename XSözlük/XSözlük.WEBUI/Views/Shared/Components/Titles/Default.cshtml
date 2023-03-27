@@ -1,0 +1,15 @@
+﻿@model List<TitleViewModel>
+
+<ol class="list-group ">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <a asp-controller="Home" asp-action="Index" asp-route-id="@item.Id" class="fw-bold">@item.Title</a>
+
+            </div>
+            <span class="badge bg-primary rounded-pill">@item.Count</span>
+        </li>
+    }
+
+</ol>

@@ -1,0 +1,31 @@
+﻿@model List<ListTitleViewModel>
+
+
+<div style="padding-top:75px">
+    @foreach (var p in Model)
+    {
+        <div class="card">
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>@p.Title</p>
+                    
+                    <span style="float:right">
+
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="EditTitle" asp-route-id="@p.Id" style="color:darkolivegreen">Düzenle</a>
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="DeleteTitle" asp-route-id="@p.Id" style="color:darkred">Sil</a>
+
+                    </span>
+                    <footer class="blockquote-footer">Oluşturma Tarihi: @p.CreatedDate <cite title="Source Title">
+                        @if (p.ModifiedDate is not null)
+                            {
+                                <span>Değiştirme tarihi: @p.ModifiedDate</span>
+                            } 
+                            </cite> </footer>
+                </blockquote>
+            </div>
+        </div>
+        
+    
+    }
+</div>
