@@ -9,7 +9,7 @@ namespace XSözlük.Data.Entities
 {
     public class EntryEntity : BaseEntity
     {
-        public string Entry { get; set; }
+        public string? Entry { get; set; }
         public int TitleId { get; set; }
         public int UserId { get; set; }
         public TitleEntity Title { get; set; }
@@ -22,7 +22,7 @@ namespace XSözlük.Data.Entities
         {
 
             builder.Property(x => x.Entry)
-                .IsRequired()
+                .IsRequired(false)
                 .HasMaxLength(100);
 
             builder.Property(x => x.TitleId)

@@ -78,8 +78,7 @@ namespace XSözlük.Business.Manager
                 Id = x.Id,
                 Title = x.Title,
                 CreatedDate = x.CreatedDate,
-                ModifiedDate=x.ModifiedDate
-
+                ModifiedDate=x.ModifiedDate,
             }).ToList();
 
             return titleDtoList;

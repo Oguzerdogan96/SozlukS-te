@@ -12,9 +12,11 @@ namespace XSözlük.WEBUI.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly ITitleService _titleService;
-        public DashboardController(ITitleService titleService)
+        private readonly IEntryService _entryService;
+        public DashboardController(ITitleService titleService, IEntryService entryService)
         {
             _titleService = titleService;
+            _entryService = entryService;
         }
         public IActionResult List()
         {
@@ -52,6 +54,12 @@ namespace XSözlük.WEBUI.Areas.Admin.Controllers
                 return View(formData);
             }
 
+            var viewModel = _titleService.GetTitles();
+
+            var x = viewModel[viewModel.Count - 1].Id;  //en son eklenen başlığın idsini çektim
+
+            _entryService.AddEntry(x);
+            
 
             return RedirectToAction("List");
 
@@ -80,10 +88,12 @@ namespace XSözlük.WEBUI.Areas.Admin.Controllers
             _titleService.EditTitle(editTitleDto);
 
             return RedirectToAction("List");
+
         }
         public IActionResult DeleteTitle(int id)
         {
             _titleService.DeleteTitle(id);
+
             return RedirectToAction("List");
         }
     }

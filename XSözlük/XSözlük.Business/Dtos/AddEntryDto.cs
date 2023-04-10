@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace XSözlük.Business.Dtos
 {
-    public class EntryDto
+    public class AddEntryDto
     {
-        public int Id { get; set; }
+        
         public int TitleId { get; set; }
         public int UserId { get; set; }
         public string? Entry { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string TitleName { get; set; }
     }
 }

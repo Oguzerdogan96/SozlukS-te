@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using XSözlük.Business.Dtos;
 using XSözlük.Business.Services;
 using XSözlük.WEBUI.Models;
 
@@ -30,11 +31,31 @@ namespace XSözlük.WEBUI.Controllers
             //return View(viewModel);
 
             
-
+           
             ViewBag.Id = id;
             return View();
 
 
+        }
+        [HttpPost]
+        public IActionResult New(int titleId,int userId,HomeListViewModel formData)
+        {
+            var entryDto = new AddEntryDto
+            {
+                UserId = userId,
+                TitleId = titleId,
+                Entry = formData.Entry
+            };
+
+            _entryService.AddEntry(entryDto);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int entryId)
+        {
+            _entryService.DeleteEntry(entryId);
+            return RedirectToAction("Index");
         }
     }
 }

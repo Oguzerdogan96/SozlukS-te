@@ -17,4 +17,8 @@
     <ProjectReference Include="..\XSözlük.Business\XSözlük.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Entry\" />
+  </ItemGroup>
+
 </Project>
